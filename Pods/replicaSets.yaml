@@ -3,6 +3,10 @@ kind: ReplicaSet
 metadata:
   name: my-replicaset
 spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
   template:
     metadata:
       labels:
@@ -11,7 +15,3 @@ spec:
       containers:
       - name: my-container
         image: nginx:latest
-	replicas: 3
-	  selector:
-	    matchLabels:
-	      app: my-app
