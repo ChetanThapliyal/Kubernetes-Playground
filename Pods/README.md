@@ -1,4 +1,4 @@
-### Basic commands for Pods using `kubectl`
+# Basic commands for Pods using `kubectl`
 
 Here are some basic `kubectl` commands for managing Pods in Kubernetes, along with examples:
 
@@ -93,7 +93,7 @@ Here are some basic `kubectl` commands for managing Pods in Kubernetes, along wi
     ```
     
 
-### Pods with YAML
+## Pods with YAML
 
 - Kubernetes uses YAML files as input for the creation of objects such as PODs, Replicas, Deployments, Services etc.
 - A kubernetes definition file always contains 4 top level fields (or root level properties).
