@@ -2,13 +2,13 @@
 
 - Controllers are the brain behind Kubernetes. They are processes that monitor kubernetes objects and respond accordingly.
 
-#### **What is a replica and why do we need a replication controller?**
+#### What is a replica and why do we need a replication controller?
 
 - A **Replica** refers to a copy or an instance of a Pod.
 - **Replication** is the process of creating and managing multiple replicas of a Pod to ensure high availability, scalability, and load balancing.
 - A **Replication Controller** is a Kubernetes resource used to manage and maintain a specified number of replicas of a Pod.
 
-#### **Replicas:**
+#### Replicas
 
 1. **High Availability**: Replicas are used to ensure high availability of applications. By running multiple replicas of a Pod, if one replica fails, the other replicas can continue serving the application, minimizing downtime.
 2. **Scalability**: Replicas enable horizontal scaling of applications. By increasing the number of replicas, the application's capacity and throughput can be increased to handle more traffic and workload.
@@ -32,7 +32,7 @@ spec:
 
 In this case, we have only one replica, which means there is a single instance of the Pod running the Nginx container.
 
-### **Replication Controller(Older Tech):**
+### Replication Controller(Older Tech)
 
 A Replication Controller is a Kubernetes resource responsible for maintaining a specified number of replicas of a Pod. Here's why we need a Replication Controller:
 
@@ -161,7 +161,7 @@ You can interact with the ReplicaSet using various `kubectl` commands, such as `
 
 Remember to customize the YAML file to match your specific requirements, including adjusting the number of replicas, adding labels, modifying container specifications, defining resource requirements, and more.
 
-#### 📌 **Scaling Replicas**
+#### 📌 Scaling Replicas
 
 Say we started with 3 replicas and in the future we decide to scale to 6. How do we update our replica set to scale to 6 replicas.
 
@@ -209,11 +209,11 @@ By running the above commands, Kubernetes will adjust the number of replicas in 
 
 You can verify the scaling operation by running `kubectl get replicaset <replicaset-name>` to see the updated replica count.
 
-### ⭐ **Explain selectors for both replica set and replication controller**
+### ⭐ Explain selectors for both replica set and replication controller
     
 Selectors play a crucial role in both ReplicaSets and Replication Controllers as they determine which Pods are managed by these controllers. However, there is a difference in the types of selectors supported by each.
     
-#### **Replication Controller Selectors**:
+#### Replication Controller Selectors
 Replication Controllers use equality-based selectors, which means they match Pods based on the equality of key-value pairs in the Pod's labels. The selector in a Replication Controller is defined using the `selector` field, and it matches the labels specified in the `labels` field of the Pod template.
     
 For example, consider the following Replication Controller definition:
@@ -239,7 +239,7 @@ spec:
     
 In this example, the Replication Controller's selector is `app: my-app`. This means it will select all Pods that have a label with the key `app` and value `my-app`.
     
-#### **ReplicaSet Selectors**:
+#### ReplicaSet Selectors
 ReplicaSets offer more flexibility with their selectors, as they support both equality-based and set-based selectors. Set-based selectors allow for more complex and expressive matching criteria.
     
 The selector in a ReplicaSet is defined using the `matchLabels` field or the `matchExpressions` field. The `matchLabels` field performs equality-based matching, similar to Replication Controllers. The `matchExpressions` field allows for more advanced matching using set-based operations such as `In`, `NotIn`, `Exists`, and `DoesNotExist`.
