@@ -112,10 +112,10 @@ spec:
       containers:
       - name: my-container
         image: nginx:latest
-	replicas: 3
-	  selector:
-	    matchLabels:
-	      app: my-app
+        replicas: 3
+      selector:
+        matchLabels:
+          app: my-app
 ```
 
 Let's examine the key components of the YAML file:
