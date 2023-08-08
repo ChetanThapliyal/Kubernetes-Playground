@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: my-web-controller
+spec:
+  replicas: 3
+  selector:
+    app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-container
+        image: nginx:latest
