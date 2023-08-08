@@ -130,13 +130,16 @@ Let's examine the key components of the YAML file:
         - The `metadata` section within the `template` specifies the labels for the Pods, with the label `app: my-app`.
         - The `spec` section within the `template` defines the Pod specification, including the container(s) to run within the Pods. In this example, there is one container named `my-container` running the nginx image.
 > ❓ **The selector section helps the replica set identify what pods fall under it. But why would you have to specify what Pods fall under it, if you have provided the contents of the pod-definition file itself in the template?**
-    The selector section in Replica Sets (and Replication Controllers) is used to identify which existing Pods are managed by the controller. Although the Pod template is provided within the ReplicaSet definition, it doesn't necessarily mean that all Pods with that template are automatically managed by the ReplicaSet.
-    The selector allows the ReplicaSet to establish ownership and manage a specific set of Pods, even if those Pods already exist in the cluster before the ReplicaSet was created. It acts as a filter or a label-based query mechanism to select the desired Pods based on their labels.
-    There are a few reasons why the selector is important, even if the Pod template is provided:
+  >The selector section in Replica Sets (and Replication Controllers) is used to identify which existing Pods are managed by the controller. Although the Pod template is provided within the ReplicaSet definition, it doesn't necessarily mean that all Pods with that template are automatically managed by the ReplicaSet.
+    
+  The selector allows the ReplicaSet to establish ownership and manage a specific set of Pods, even if those Pods already exist in the cluster before the ReplicaSet was created. It acts as a filter or a label-based query mechanism to select the desired Pods based on their labels.
+  
+  There are a few reasons why the selector is important, even if the Pod template is provided:
     1. **Ownership and Management**: The ReplicaSet needs to establish its ownership over a specific set of Pods to manage them. By defining a selector, the ReplicaSet can identify which Pods it should monitor and take actions on, such as scaling, updating, or deleting. It allows the ReplicaSet to differentiate between Pods managed by itself and other Pods with similar templates.
     2. **Scalability and Updates**: The selector is crucial for scaling the number of replicas or updating the Pod template of the ReplicaSet. It allows the ReplicaSet to determine which existing Pods need to be replaced or adjusted when scaling up/down or performing rolling updates.
     3. **Dynamic Pod Creation**: The selector enables dynamic creation of Pods that match the desired template defined in the ReplicaSet. If a managed Pod fails or is manually deleted, the ReplicaSet uses the selector to identify the missing Pod and create a replacement Pod to maintain the desired number of replicas.
-    By combining the Pod template and the selector, ReplicaSets (and Replication Controllers) provide a way to define the desired state of the Pods and maintain that state over time, ensuring the desired number of replicas are running and managed by the controller.
+  
+  By combining the Pod template and the selector, ReplicaSets (and Replication Controllers) provide a way to define the desired state of the Pods and maintain that state over time, ensuring the desired number of replicas are running and managed by the controller.
     
 
 To create the ReplicaSet, you can use the `kubectl create` command:
